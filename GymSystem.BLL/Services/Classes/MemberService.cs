@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GymSystem.BLL.Contracts;
-using GymSystem.BLL.ViewModels;
+using GymSystem.BLL.Services.Contracts;
+using GymSystem.BLL.ViewModels.MemberViewModels;
 using GymSystem.DAL.Contracts;
 using GymSystem.DAL.Models;
 using System;
@@ -30,7 +30,7 @@ namespace GymSystem.BLL.Services
             //Validate PHone Doesn't Exist
             var phoneExists = await _memberRepo.AnyAsync(m => m.Phone == model.Phone, ct);
 
-            if(emailExists || phoneExists) return false;
+            if (emailExists || phoneExists) return false;
 
             var member = new Member
             {
@@ -118,7 +118,7 @@ namespace GymSystem.BLL.Services
 
             var activeMembership = await _membershipRepo.FirstOrDefaultAsync(x => x.MemberId == member.Id && x.EndDate > DateTime.Now, ct);
 
-            if(activeMembership != null)
+            if (activeMembership != null)
             {
                 //PlAN name
                 var _planRepo = _unitOfWork.GetRepository<Plan>();
@@ -141,7 +141,7 @@ namespace GymSystem.BLL.Services
             var _healthRecordRepo = _unitOfWork.GetRepository<HealthRecord>();
 
             var healthRecord = await _healthRecordRepo.FirstOrDefaultAsync(x => x.MemberId == memberId, ct);
-            if(healthRecord == null) return null;
+            if (healthRecord == null) return null;
             return new HealthRecordViewModel
             {
                 Weight = healthRecord.Wieght,
@@ -156,7 +156,7 @@ namespace GymSystem.BLL.Services
             var _memberRepo = _unitOfWork.GetRepository<Member>();
 
             var member = await _memberRepo.GetByIdAsync(memberId, ct);
-            if(member == null) return null;
+            if (member == null) return null;
             return new MemberToUpdateViewModel
             {
                 Name = member.Name,
@@ -174,12 +174,12 @@ namespace GymSystem.BLL.Services
             var _memberRepo = _unitOfWork.GetRepository<Member>();
 
             var member = await _memberRepo.GetByIdAsync(id, ct);
-            if(member == null) return false;
+            if (member == null) return false;
 
             var _bookingRepo = _unitOfWork.GetRepository<Booking>();
 
             var hasFutureBookings = await _bookingRepo.AnyAsync(x => x.MemberId == id && x.BookingDate > DateTime.Now, ct);
-            if(hasFutureBookings) return false;
+            if (hasFutureBookings) return false;
 
             _memberRepo.Delete(member);
             var result = await _unitOfWork.SaveChangesAsync(ct);
@@ -191,13 +191,13 @@ namespace GymSystem.BLL.Services
             var _memberRepo = _unitOfWork.GetRepository<Member>();
 
             var member = await _memberRepo.GetByIdAsync(id, ct);
-            if(member == null) return false;
+            if (member == null) return false;
 
             var emailExists = await _memberRepo.AnyAsync(x => x.Email == model.Email && x.Id != model.Id, ct);
             var PhoneExists = await _memberRepo.AnyAsync(x => x.Phone == model.Phone && x.Id != model.Id, ct);
 
-            if(emailExists || PhoneExists) return false;
-            
+            if (emailExists || PhoneExists) return false;
+
             member.Email = model.Email;
             member.Phone = model.Phone;
             member.Address.Street = model.Street;
