@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymSystem.BLL.ViewModels
+namespace GymSystem.BLL.ViewModels.MemberViewModels
 {
     public class CreateMemberViewModel
     {

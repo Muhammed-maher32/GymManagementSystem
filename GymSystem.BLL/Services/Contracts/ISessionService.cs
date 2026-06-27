@@ -1,14 +1,17 @@
-﻿using GymSystem.BLL.ViewModels;
+﻿using GymSystem.BLL.Services.Common;
+using GymSystem.BLL.ViewModels.SessionViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymSystem.BLL.Contracts
+namespace GymSystem.BLL.Services.Contracts
 {
     public interface ISessionService
     {
         Task<IEnumerable<SessionViewModel?>> GetAllSessionsAsync(CancellationToken ct);
+        Task<Result> CreateSessionAsync(CreateSessionViewModel model, CancellationToken ct);
+
     }
 }

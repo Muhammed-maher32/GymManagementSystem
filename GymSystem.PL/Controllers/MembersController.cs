@@ -1,5 +1,5 @@
-﻿using GymSystem.BLL.Contracts;
-using GymSystem.BLL.ViewModels;
+﻿using GymSystem.BLL.Services.Contracts;
+using GymSystem.BLL.ViewModels.MemberViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
