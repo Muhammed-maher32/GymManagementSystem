@@ -5,11 +5,6 @@ using GymSystem.BLL.ViewModels.SessionViewModels;
 using GymSystem.DAL.Contracts;
 using GymSystem.DAL.Models;
 using GymSystem.DAL.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymSystem.BLL.Services
 {
@@ -74,6 +69,18 @@ namespace GymSystem.BLL.Services
             }
 
             return mappedSessions;
+        }
+
+        public async Task<IEnumerable<CategorySelectViewModel>> GetCategoriesForDropDownAsync(CancellationToken ct = default)
+        {
+            var result = await _unitOfWork.GetRepository<Category>().GetAllAsync(ct);
+            return _mapper.Map<IEnumerable<CategorySelectViewModel>>(result);
+        }
+
+        public async Task<IEnumerable<TrainerSelectViewModel>> GetTrainersForDropDownAsync(CancellationToken ct = default)
+        {
+            var result = await _unitOfWork.GetRepository<Trainer>().GetAllAsync(ct);
+            return _mapper.Map<IEnumerable<TrainerSelectViewModel>>(result);
         }
     }
 }

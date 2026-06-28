@@ -1,8 +1,7 @@
-﻿using GymSystem.BLL.Services.Common;
-using GymSystem.BLL.Services.Contracts;
+﻿using GymSystem.BLL.Services.Contracts;
 using GymSystem.BLL.ViewModels.SessionViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GymSystemG04.Controllers
 {
@@ -22,28 +21,36 @@ namespace GymSystemG04.Controllers
         }
         #region CreateSession
 
-        public IActionResult Create(CancellationToken ct)
+        public async Task<IActionResult> Create(CancellationToken ct)
         {
+            await PopulateDropDownListsAsync(ct);
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateSessionViewModel model, CancellationToken ct)
         {
             if (!ModelState.IsValid)
             {
+                await PopulateDropDownListsAsync(ct);
                 return View(model);
             }
             var result = await _sessionService.CreateSessionAsync(model, ct);
             if (result.Success)
             {
                 TempData["SuccessMessage"] = "SessionCreatedSuccessfully";
-                RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
             TempData["ErrorMessage"] = result.Error;
+            await PopulateDropDownListsAsync(ct);
             return View(model);
         }
 
-
+        private async Task PopulateDropDownListsAsync(CancellationToken ct)
+        {
+            ViewBag.Trainers = new SelectList(await _sessionService.GetTrainersForDropDownAsync(ct), "Id", "Name");
+            ViewBag.Categories = new SelectList(await _sessionService.GetCategoriesForDropDownAsync(ct), "Id", "CategoryName");
+        }
         #endregion
     }
 }
