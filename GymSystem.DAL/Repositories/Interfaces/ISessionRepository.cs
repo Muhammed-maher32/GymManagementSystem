@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymSystem.DAL.Contracts
+namespace GymSystem.DAL.Repositories.Interfaces
 {
     public interface ISessionRepository : IGenericRepository<Session>
     {

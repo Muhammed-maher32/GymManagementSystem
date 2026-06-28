@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GymSystem.DAL.Configurations
+namespace GymSystem.DAL.Data.Configurations
 {
     public class PlanConfiguration : IEntityTypeConfiguration<Plan>
     {

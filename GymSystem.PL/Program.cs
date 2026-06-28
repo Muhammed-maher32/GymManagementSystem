@@ -1,10 +1,9 @@
 using GymSystem.BLL;
 using GymSystem.BLL.Services;
 using GymSystem.BLL.Services.Contracts;
-using GymSystem.DAL;
-using GymSystem.DAL.AppDbContexts;
-using GymSystem.DAL.Contracts;
-using GymSystem.DAL.Repositories;
+using GymSystem.DAL.Data.AppDbContexts;
+using GymSystem.DAL.Repositories.Classes;
+using GymSystem.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymSystemG04

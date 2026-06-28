@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using GymSystem.BLL.Services.Contracts;
 using GymSystem.BLL.ViewModels.MemberViewModels;
-using GymSystem.DAL.Contracts;
 using GymSystem.DAL.Models;
+using GymSystem.DAL.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

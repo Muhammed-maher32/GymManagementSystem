@@ -2,9 +2,9 @@
 using GymSystem.BLL.Services.Common;
 using GymSystem.BLL.Services.Contracts;
 using GymSystem.BLL.ViewModels.SessionViewModels;
-using GymSystem.DAL.Contracts;
 using GymSystem.DAL.Models;
 using GymSystem.DAL.Models.Enums;
+using GymSystem.DAL.Repositories.Interfaces;
 
 namespace GymSystem.BLL.Services
 {

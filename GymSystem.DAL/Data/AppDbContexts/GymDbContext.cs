@@ -1,15 +1,14 @@
-﻿using GymSystem.DAL.Configurations;
-using GymSystem.DAL.Models;
+﻿using GymSystem.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace GymSystem.DAL.AppDbContexts
+namespace GymSystem.DAL.Data.AppDbContexts
 {
     public class GymDbContext : DbContext
     {
         public GymDbContext(DbContextOptions contextOptions) : base(contextOptions)
         {
-            
+
         }
 
         public DbSet<Plan> Plans { get; set; }

@@ -1,6 +1,6 @@
 ﻿using GymSystem.DAL.Models;
 
-namespace GymSystem.DAL.Contracts
+namespace GymSystem.DAL.Repositories.Interfaces
 {
     public interface IUnitOfWork
     {

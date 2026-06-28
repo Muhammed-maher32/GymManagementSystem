@@ -1,10 +1,6 @@
-﻿using GymSystem.DAL.AppDbContexts;
-using GymSystem.DAL.Contracts;
-using GymSystem.DAL.Models;
-using GymSystem.DAL.Repositories;
+﻿using GymSystem.DAL.Models;
+using GymSystem.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace GymSystemG04.Controllers
 {
@@ -28,7 +24,7 @@ namespace GymSystemG04.Controllers
         {
             var plan = await _planRepo.GetByIdAsync(id, ct);
 
-            if(plan == null)
+            if (plan == null)
                 return RedirectToAction(nameof(Index));
 
             return View(plan);

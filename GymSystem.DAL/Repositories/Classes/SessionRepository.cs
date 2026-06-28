@@ -1,6 +1,6 @@
-﻿using GymSystem.DAL.AppDbContexts;
-using GymSystem.DAL.Contracts;
+﻿using GymSystem.DAL.Data.AppDbContexts;
 using GymSystem.DAL.Models;
+using GymSystem.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymSystem.DAL.Repositories
+namespace GymSystem.DAL.Repositories.Classes
 {
     public class SessionRepository : GenericRepository<Session>, ISessionRepository
     {
