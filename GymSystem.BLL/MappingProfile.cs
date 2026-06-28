@@ -40,10 +40,14 @@ namespace GymSystem.BLL
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(c => c.Category.Name));
 
             CreateMap<CreateSessionViewModel, Session>()
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(s => s.StartDate));
+                .ForMember(
+                    dest => dest.CreatedAt,
+                    opt => opt.MapFrom(s => s.StartDate)
+                );
 
             CreateMap<Trainer, TrainerSelectViewModel>();
             CreateMap<Category, CategorySelectViewModel>();
+
         }
 
     }

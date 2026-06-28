@@ -49,7 +49,7 @@ namespace GymSystemG04.Controllers
         private async Task PopulateDropDownListsAsync(CancellationToken ct)
         {
             ViewBag.Trainers = new SelectList(await _sessionService.GetTrainersForDropDownAsync(ct), "Id", "Name");
-            ViewBag.Categories = new SelectList(await _sessionService.GetCategoriesForDropDownAsync(ct), "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _sessionService.GetCategoriesForDropDownAsync(ct), "Id", "Name");
         }
         #endregion
     }

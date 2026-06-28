@@ -15,6 +15,6 @@ namespace GymSystem.DAL.Models
         public string Email { get; set; } = default!;
         public DateOnly DateofBirth { get; set; }
         public Gender Gender { get; set; }
-        public Address Address { get; set; }
+        public Address Address { get; set; } = default!;
     }
 }
