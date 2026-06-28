@@ -12,20 +12,13 @@ public static class GymDataSeeding
     {
         try
         {
-            if (!await dbContext.Plans.AnyAsync(ct))
-            {
-                var plans = LoadDataFromJsonFile<Plan>("plans.json", seedFilesPath);
-                if (plans.Count > 0)
-                {
-                    dbContext.Plans.AddRange(plans);
-                    logger.LogInformation("Seeded {Count} plans.", plans.Count);
-                }
-            }
+            await SeedPlansAsync(dbContext, seedFilesPath, logger, ct);
+            await SeedTrainersAsync(dbContext, seedFilesPath, logger, ct);
 
             if (dbContext.ChangeTracker.HasChanges())
+            {
                 await dbContext.SaveChangesAsync(ct);
-            else
-                logger.LogInformation("Plan Already Seeded");
+            }
         }
         catch (Exception ex)
         {
@@ -34,17 +27,56 @@ public static class GymDataSeeding
         }
     }
 
-    private static List<T> LoadDataFromJsonFile<T>(string fileName, string FolderPath)
+    private static async Task SeedPlansAsync(GymDbContext dbContext, string seedFilesPath, ILogger logger, CancellationToken ct)
     {
+        if (await dbContext.Plans.AnyAsync(ct))
+        {
+            logger.LogInformation("Plans already seeded.");
+            return;
+        }
 
-        var filePath = Path.Combine(FolderPath, fileName);
+        var plans = LoadDataFromJsonFile<Plan>("plans.json", seedFilesPath);
+
+        if (plans.Count == 0)
+            return;
+
+        dbContext.Plans.AddRange(plans);
+
+        logger.LogInformation("Seeded {Count} plans.", plans.Count);
+    }
+
+    private static async Task SeedTrainersAsync(GymDbContext dbContext, string seedFilesPath, ILogger logger, CancellationToken ct)
+    {
+        if (await dbContext.Trainers.AnyAsync(ct))
+        {
+            logger.LogInformation("Trainers already seeded.");
+            return;
+        }
+
+        var trainers = LoadDataFromJsonFile<Trainer>("trainers.json", seedFilesPath);
+
+        if (trainers.Count == 0)
+            return;
+
+        dbContext.Trainers.AddRange(trainers);
+
+        logger.LogInformation("Seeded {Count} trainers.", trainers.Count);
+    }
+
+    private static List<T> LoadDataFromJsonFile<T>(
+        string fileName,
+        string folderPath)
+    {
+        var filePath = Path.Combine(folderPath, fileName);
+
         if (!File.Exists(filePath))
             throw new FileNotFoundException($"Seed data file not found: {filePath}");
 
         var data = File.ReadAllText(filePath);
+
         var options = new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true,
+            PropertyNameCaseInsensitive = true
         };
 
         return JsonSerializer.Deserialize<List<T>>(data, options) ?? [];

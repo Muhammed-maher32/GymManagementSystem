@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Ahmed Hassan",
+    "phone": "01012345678",
+    "email": "ahmed.hassan@gym.com",
+    "dateofBirth": "1992-05-14",
+    "gender": 1,
+    "speciality": 1,
+    "address": {
+      "city": "Cairo",
+      "street": "Makram Ebeid",
+      "buildingNumber": 15
+    }
+  },
+  {
+    "name": "Mohamed Ali",
+    "phone": "01123456789",
+    "email": "mohamed.ali@gym.com",
+    "dateofBirth": "1990-09-20",
+    "gender": 1,
+    "speciality": 3,
+    "address": {
+      "city": "Giza",
+      "street": "El Tahrir",
+      "buildingNumber": 42
+    }
+  },
+  {
+    "name": "Sara Mostafa",
+    "phone": "01234567890",
+    "email": "sara.mostafa@gym.com",
+    "dateofBirth": "1995-03-12",
+    "gender": 2,
+    "speciality": 2,
+    "address": {
+      "city": "Cairo",
+      "street": "Abbas El Akkad",
+      "buildingNumber": 8
+    }
+  },
+  {
+    "name": "Omar Khaled",
+    "phone": "01512345678",
+    "email": "omar.khaled@gym.com",
+    "dateofBirth": "1989-11-02",
+    "gender": 1,
+    "speciality": 4,
+    "address": {
+      "city": "Alexandria",
+      "street": "Fouad Street",
+      "buildingNumber": 27
+    }
+  },
+  {
+    "name": "Mariam Adel",
+    "phone": "01087654321",
+    "email": "mariam.adel@gym.com",
+    "dateofBirth": "1994-07-18",
+    "gender": 2,
+    "speciality": 1,
+    "address": {
+      "city": "Mansoura",
+      "street": "El Gomhoria Street",
+      "buildingNumber": 10
+    }
+  }
+]

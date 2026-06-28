@@ -26,7 +26,7 @@ namespace GymSystem.DAL.Data.Configurations
             builder.ToTable(tb =>
             {
                 tb.HasCheckConstraint("EmailConstraint", "Email Like '_%@_%._%'");
-                tb.HasCheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%'");
+                tb.HasCheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%' or Phone Like '012%' or Phone Like '015%' ");
             });
 
 
