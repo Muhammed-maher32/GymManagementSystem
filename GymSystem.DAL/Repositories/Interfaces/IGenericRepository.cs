@@ -10,7 +10,7 @@ namespace GymSystem.DAL.Repositories.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity, new()
     {
-        Task<TEntity> GetByIdAsync(int id, CancellationToken ct);
+        Task<TEntity?> GetByIdAsync(int id, CancellationToken ct);
         Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken ct);
         void Add(TEntity entity);
         void Update(TEntity entity);

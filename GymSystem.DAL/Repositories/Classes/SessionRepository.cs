@@ -30,7 +30,16 @@ namespace GymSystem.DAL.Repositories.Classes
 
         public async Task<int> GetCountOfBookedSlotsAsync(int id, CancellationToken ct)
         {
-            return await _dbContext.Sessions.Where(s => s.Id == id).Select(s => s.Bookings.Count()).FirstOrDefaultAsync();
+            return await _dbContext.Sessions.Where(s => s.Id == id).Select(s => s.Bookings.Count()).FirstOrDefaultAsync(ct);
+        }
+
+        public async Task<Dictionary<int, int>> GetBookedSlotsCountsAsync(IEnumerable<int> sessionIds, CancellationToken ct)
+        {
+            return await _dbContext.Set<Booking>()
+                                   .Where(b => sessionIds.Contains(b.SessionId))
+                                   .GroupBy(b => b.SessionId)
+                                   .Select(g => new { SessionId = g.Key, Count = g.Count() })
+                                   .ToDictionaryAsync(x => x.SessionId, x => x.Count, ct);
         }
     }
 }

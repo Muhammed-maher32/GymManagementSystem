@@ -60,12 +60,15 @@ namespace GymSystem.BLL.Services
             var sessionRepo = _unitOfWork.SessionRepository;
             var sessions = await sessionRepo.GetAllSessionsWithTrainerAndCategoryAsync(ct);
             if (sessions == null) return null!;
-            var mappedSessions = _mapper.Map<IEnumerable<SessionViewModel>>(sessions);
+            var mappedSessions = _mapper.Map<IEnumerable<SessionViewModel>>(sessions).ToList();
 
-            // N + 1 !!!!!!!!!!!!!!
+            // Single query for all booked-slot counts, then resolve in-memory (avoids N+1).
+            var bookedCounts = await sessionRepo.GetBookedSlotsCountsAsync(mappedSessions.Select(s => s.Id), ct);
+
             foreach (var session in mappedSessions)
             {
-                session.AvailableSlots = session.Capacity - await sessionRepo.GetCountOfBookedSlotsAsync(session.Id, ct);
+                bookedCounts.TryGetValue(session.Id, out var booked);
+                session.AvailableSlots = session.Capacity - booked;
             }
 
             return mappedSessions;

@@ -42,10 +42,9 @@ namespace GymSystem.DAL.Repositories.Classes
             return await _set.ToListAsync(ct);
         }
 
-        public async Task<TEntity> GetByIdAsync(int id, CancellationToken ct)
+        public async Task<TEntity?> GetByIdAsync(int id, CancellationToken ct)
         {
-            var entity = await _set.FindAsync(id, ct);
-            return entity;
+            return await _set.FindAsync(new object[] { id }, ct);
         }
 
         public void Update(TEntity entity)

@@ -11,5 +11,6 @@ namespace GymSystem.DAL.Repositories.Interfaces
     {
         Task<IEnumerable<Session>> GetAllSessionsWithTrainerAndCategoryAsync(CancellationToken ct);
         Task<int> GetCountOfBookedSlotsAsync(int id, CancellationToken ct);
+        Task<Dictionary<int, int>> GetBookedSlotsCountsAsync(IEnumerable<int> sessionIds, CancellationToken ct);
     }
 }

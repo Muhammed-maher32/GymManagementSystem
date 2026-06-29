@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
 using GymSystem.BLL.ViewModels.MemberViewModels;
+using GymSystem.BLL.ViewModels.PlanViewModels;
 using GymSystem.BLL.ViewModels.SessionViewModels;
 using GymSystem.DAL.Models;
 using System;
@@ -17,8 +17,12 @@ namespace GymSystem.BLL
         {
             MapMember();
             MapSession();
+            MapPlan();
+        }
 
-
+        private void MapPlan()
+        {
+            CreateMap<Plan, PlanViewModel>();
         }
 
         private void MapMember()

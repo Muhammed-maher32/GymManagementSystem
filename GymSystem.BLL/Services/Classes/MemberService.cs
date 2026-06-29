@@ -55,7 +55,7 @@ namespace GymSystem.BLL.Services
                 var _planRepo = _unitOfWork.GetRepository<Plan>();
 
                 var plan = await _planRepo.GetByIdAsync(activeMembership.PlanId, ct);
-                memberDetailsVM.PlanName = plan.Name;
+                memberDetailsVM.PlanName = plan?.Name;
                 //assign membershipStartDate & membershipEndDate
                 memberDetailsVM.MembershipStartDate = activeMembership.StartDate.ToString();
                 memberDetailsVM.MembershipEndDate = activeMembership.EndDate.ToString();
