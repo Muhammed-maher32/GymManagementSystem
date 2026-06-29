@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymSystem.DAL.Migrations
 {
     [DbContext(typeof(GymDbContext))]
-    [Migration("20260623203156_IntialCreate")]
+    [Migration("20260629213456_IntialCreate")]
     partial class IntialCreate
     {
         /// <inheritdoc />
@@ -160,7 +160,7 @@ namespace GymSystem.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GetDate()");
 
-                    b.Property<int>("Hieght")
+                    b.Property<int>("Height")
                         .HasColumnType("int");
 
                     b.Property<int>("MemberId")
@@ -172,7 +172,7 @@ namespace GymSystem.DAL.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("Wieght")
+                    b.Property<float>("Weight")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
@@ -197,7 +197,7 @@ namespace GymSystem.DAL.Migrations
                         .HasColumnName("JoinDate")
                         .HasDefaultValueSql("GetDate()");
 
-                    b.Property<DateOnly>("DateofBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
@@ -235,7 +235,7 @@ namespace GymSystem.DAL.Migrations
                         {
                             t.HasCheckConstraint("EmailConstraint", "Email Like '_%@_%._%'");
 
-                            t.HasCheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%'");
+                            t.HasCheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%' or Phone Like '012%' or Phone Like '015%' ");
                         });
                 });
 
@@ -368,7 +368,7 @@ namespace GymSystem.DAL.Migrations
                         .HasColumnName("HireDate")
                         .HasDefaultValueSql("GetDate()");
 
-                    b.Property<DateOnly>("DateofBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
@@ -407,7 +407,7 @@ namespace GymSystem.DAL.Migrations
                             t.HasCheckConstraint("EmailConstraint", "Email Like '_%@_%._%'")
                                 .HasName("EmailConstraint1");
 
-                            t.HasCheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%'")
+                            t.HasCheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%' or Phone Like '012%' or Phone Like '015%' ")
                                 .HasName("PhoneConstraint1");
                         });
                 });

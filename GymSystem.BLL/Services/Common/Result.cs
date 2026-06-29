@@ -25,8 +25,8 @@ namespace GymSystem.BLL.Services.Common
     {
         Ok,
         NotFound,
-        Conflict,            // duplicate email, plan already active, etc.
-        ValidationFailed,    // bad input that ModelState should normally have caught
+        Conflict,
+        ValidationFailed,
         Forbidden,
     }
 }

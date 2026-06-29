@@ -55,7 +55,7 @@ namespace GymSystem.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DateofBirth = table.Column<DateOnly>(type: "date", nullable: false),
+                    DateOfBirth = table.Column<DateOnly>(type: "date", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -65,7 +65,7 @@ namespace GymSystem.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Members", x => x.Id);
                     table.CheckConstraint("EmailConstraint", "Email Like '_%@_%._%'");
-                    table.CheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%'");
+                    table.CheckConstraint("PhoneConstraint", "Phone Like '010%' or Phone Like '011%' or Phone Like '012%' or Phone Like '015%' ");
                 });
 
             migrationBuilder.CreateTable(
@@ -115,7 +115,7 @@ namespace GymSystem.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DateofBirth = table.Column<DateOnly>(type: "date", nullable: false),
+                    DateOfBirth = table.Column<DateOnly>(type: "date", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -125,7 +125,7 @@ namespace GymSystem.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Trainers", x => x.Id);
                     table.CheckConstraint("EmailConstraint1", "Email Like '_%@_%._%'");
-                    table.CheckConstraint("PhoneConstraint1", "Phone Like '010%' or Phone Like '011%'");
+                    table.CheckConstraint("PhoneConstraint1", "Phone Like '010%' or Phone Like '011%' or Phone Like '012%' or Phone Like '015%' ");
                 });
 
             migrationBuilder.CreateTable(
@@ -159,8 +159,8 @@ namespace GymSystem.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Hieght = table.Column<int>(type: "int", nullable: false),
-                    Wieght = table.Column<float>(type: "real", nullable: false),
+                    Height = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<float>(type: "real", nullable: false),
                     BloodType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MemberId = table.Column<int>(type: "int", nullable: false),

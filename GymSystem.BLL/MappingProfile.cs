@@ -31,6 +31,24 @@ namespace GymSystem.BLL
 
             CreateMap<HealthRecord, HealthRecordViewModel>().ReverseMap();
 
+            CreateMap<CreateMemberViewModel, DAL.Models.Member>()
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(s => new Address
+                {
+                    City = s.City,
+                    Street = s.Street,
+                    BuildingNumber = s.BuildingNumber
+                }))
+                .ForMember(dest => dest.HealthRecord, opt => opt.MapFrom(s => s.HealthRecordViewModel));
+
+            CreateMap<MemberToUpdateViewModel, DAL.Models.Member>()
+                .ForMember(d => d.Address, o => o.MapFrom(s => new Address
+                {
+                    City = s.City,
+                    Street = s.Street,
+                    BuildingNumber = s.BuildingNumber
+                }))
+                .ForMember(d => d.Id, o => o.Ignore())
+                .ForMember(d => d.CreatedAt, o => o.Ignore());
         }
 
         private void MapSession()

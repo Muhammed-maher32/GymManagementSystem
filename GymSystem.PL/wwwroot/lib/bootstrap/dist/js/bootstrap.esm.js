@@ -200,7 +200,7 @@ const noop = () => {};
 
 const reflow = element => {
   // eslint-disable-next-line no-unused-expressions
-  element.offsetHeight;
+  element.offsetheight;
 };
 
 const getjQuery = () => {
@@ -1635,7 +1635,7 @@ const CLASS_NAME_COLLAPSING = 'collapsing';
 const CLASS_NAME_COLLAPSED = 'collapsed';
 const CLASS_NAME_HORIZONTAL = 'collapse-horizontal';
 const WIDTH = 'width';
-const HEIGHT = 'height';
+const height = 'height';
 const SELECTOR_ACTIVES = '.show, .collapsing';
 const SELECTOR_DATA_TOGGLE$4 = '[data-bs-toggle="collapse"]';
 /**
@@ -1832,7 +1832,7 @@ class Collapse extends BaseComponent {
   }
 
   _getDimension() {
-    return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
+    return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : height;
   }
 
   _initializeChildren() {
@@ -3023,10 +3023,10 @@ class Modal extends BaseComponent {
 
     const {
       classList,
-      scrollHeight,
+      scrollheight,
       style
     } = this._element;
-    const isModalOverflowing = scrollHeight > document.documentElement.clientHeight; // return if the following background transition hasn't yet completed
+    const isModalOverflowing = scrollheight > document.documentElement.clientheight; // return if the following background transition hasn't yet completed
 
     if (!isModalOverflowing && style.overflowY === 'hidden' || classList.contains(CLASS_NAME_STATIC)) {
       return;
@@ -3055,7 +3055,7 @@ class Modal extends BaseComponent {
 
 
   _adjustDialog() {
-    const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+    const isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
     const scrollbarWidth = this._scrollBar.getWidth();
 
@@ -4365,7 +4365,7 @@ class ScrollSpy extends BaseComponent {
     this._offsets = [];
     this._targets = [];
     this._activeTarget = null;
-    this._scrollHeight = 0;
+    this._scrollheight = 0;
     EventHandler.on(this._scrollElement, EVENT_SCROLL, () => this._process());
     this.refresh();
 
@@ -4388,7 +4388,7 @@ class ScrollSpy extends BaseComponent {
     const offsetBase = offsetMethod === METHOD_POSITION ? this._getScrollTop() : 0;
     this._offsets = [];
     this._targets = [];
-    this._scrollHeight = this._getScrollHeight();
+    this._scrollheight = this._getScrollheight();
     const targets = SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target);
     targets.map(element => {
       const targetSelector = getSelectorFromElement(element);
@@ -4430,22 +4430,22 @@ class ScrollSpy extends BaseComponent {
     return this._scrollElement === window ? this._scrollElement.pageYOffset : this._scrollElement.scrollTop;
   }
 
-  _getScrollHeight() {
-    return this._scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  _getScrollheight() {
+    return this._scrollElement.scrollheight || Math.max(document.body.scrollheight, document.documentElement.scrollheight);
   }
 
-  _getOffsetHeight() {
-    return this._scrollElement === window ? window.innerHeight : this._scrollElement.getBoundingClientRect().height;
+  _getOffsetheight() {
+    return this._scrollElement === window ? window.innerheight : this._scrollElement.getBoundingClientRect().height;
   }
 
   _process() {
     const scrollTop = this._getScrollTop() + this._config.offset;
 
-    const scrollHeight = this._getScrollHeight();
+    const scrollheight = this._getScrollheight();
 
-    const maxScroll = this._config.offset + scrollHeight - this._getOffsetHeight();
+    const maxScroll = this._config.offset + scrollheight - this._getOffsetheight();
 
-    if (this._scrollHeight !== scrollHeight) {
+    if (this._scrollheight !== scrollheight) {
       this.refresh();
     }
 

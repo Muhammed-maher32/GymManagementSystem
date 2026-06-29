@@ -204,7 +204,7 @@
 
   const reflow = element => {
     // eslint-disable-next-line no-unused-expressions
-    element.offsetHeight;
+    element.offsetheight;
   };
 
   const getjQuery = () => {
@@ -1639,7 +1639,7 @@
   const CLASS_NAME_COLLAPSED = 'collapsed';
   const CLASS_NAME_HORIZONTAL = 'collapse-horizontal';
   const WIDTH = 'width';
-  const HEIGHT = 'height';
+  const height = 'height';
   const SELECTOR_ACTIVES = '.show, .collapsing';
   const SELECTOR_DATA_TOGGLE$4 = '[data-bs-toggle="collapse"]';
   /**
@@ -1836,7 +1836,7 @@
     }
 
     _getDimension() {
-      return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
+      return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : height;
     }
 
     _initializeChildren() {
@@ -2091,7 +2091,7 @@
     if (isHTMLElement(element) && includeScale) {
       // Fallback to 1 in case both values are `0`
       scaleX = rect.width / element.offsetWidth || 1;
-      scaleY = rect.height / element.offsetHeight || 1;
+      scaleY = rect.height / element.offsetheight || 1;
     }
 
     return {
@@ -2113,7 +2113,7 @@
     // Fixes https://github.com/popperjs/popper-core/issues/1223
 
     var width = element.offsetWidth;
-    var height = element.offsetHeight;
+    var height = element.offsetheight;
 
     if (Math.abs(clientRect.width - width) <= 1) {
       width = clientRect.width;
@@ -2306,7 +2306,7 @@
     var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets[axis] - state.rects.popper[len];
     var startDiff = popperOffsets[axis] - state.rects.reference[axis];
     var arrowOffsetParent = getOffsetParent(arrowElement);
-    var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
+    var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientheight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
     var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
     // outside of the popper bounds
 
@@ -2403,14 +2403,14 @@
 
     if (adaptive) {
       var offsetParent = getOffsetParent(popper);
-      var heightProp = 'clientHeight';
+      var heightProp = 'clientheight';
       var widthProp = 'clientWidth';
 
       if (offsetParent === getWindow(popper)) {
         offsetParent = getDocumentElement(popper);
 
         if (getComputedStyle$1(offsetParent).position !== 'static') {
-          heightProp = 'scrollHeight';
+          heightProp = 'scrollheight';
           widthProp = 'scrollWidth';
         }
       } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
@@ -2591,11 +2591,11 @@
     var html = getDocumentElement(element);
     var visualViewport = win.visualViewport;
     var width = html.clientWidth;
-    var height = html.clientHeight;
+    var height = html.clientheight;
     var x = 0;
     var y = 0; // NB: This isn't supported on iOS <= 12. If the keyboard is open, the popper
     // can be obscured underneath it.
-    // Also, `html.clientHeight` adds the bottom bar height in Safari iOS, even
+    // Also, `html.clientheight` adds the bottom bar height in Safari iOS, even
     // if it isn't open, so if this isn't available, the popper will be detected
     // to overflow the bottom of the screen too early.
 
@@ -2633,7 +2633,7 @@
     var winScroll = getWindowScroll(element);
     var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
     var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
-    var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
+    var height = max(html.scrollheight, html.clientheight, body ? body.scrollheight : 0, body ? body.clientheight : 0);
     var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
     var y = -winScroll.scrollTop;
 
@@ -2708,10 +2708,10 @@
     var rect = getBoundingClientRect(element);
     rect.top = rect.top + element.clientTop;
     rect.left = rect.left + element.clientLeft;
-    rect.bottom = rect.top + element.clientHeight;
+    rect.bottom = rect.top + element.clientheight;
     rect.right = rect.left + element.clientWidth;
     rect.width = element.clientWidth;
-    rect.height = element.clientHeight;
+    rect.height = element.clientheight;
     rect.x = rect.left;
     rect.y = rect.top;
     return rect;
@@ -3333,7 +3333,7 @@
   function isElementScaled(element) {
     var rect = element.getBoundingClientRect();
     var scaleX = rect.width / element.offsetWidth || 1;
-    var scaleY = rect.height / element.offsetHeight || 1;
+    var scaleY = rect.height / element.offsetheight || 1;
     return scaleX !== 1 || scaleY !== 1;
   } // Returns the composite rect of an element relative to its offsetParent.
   // Composite means it takes into account transforms as well as layout.
@@ -4803,10 +4803,10 @@
 
       const {
         classList,
-        scrollHeight,
+        scrollheight,
         style
       } = this._element;
-      const isModalOverflowing = scrollHeight > document.documentElement.clientHeight; // return if the following background transition hasn't yet completed
+      const isModalOverflowing = scrollheight > document.documentElement.clientheight; // return if the following background transition hasn't yet completed
 
       if (!isModalOverflowing && style.overflowY === 'hidden' || classList.contains(CLASS_NAME_STATIC)) {
         return;
@@ -4835,7 +4835,7 @@
 
 
     _adjustDialog() {
-      const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      const isModalOverflowing = this._element.scrollheight > document.documentElement.clientheight;
 
       const scrollbarWidth = this._scrollBar.getWidth();
 
@@ -6145,7 +6145,7 @@
       this._offsets = [];
       this._targets = [];
       this._activeTarget = null;
-      this._scrollHeight = 0;
+      this._scrollheight = 0;
       EventHandler.on(this._scrollElement, EVENT_SCROLL, () => this._process());
       this.refresh();
 
@@ -6168,7 +6168,7 @@
       const offsetBase = offsetMethod === METHOD_POSITION ? this._getScrollTop() : 0;
       this._offsets = [];
       this._targets = [];
-      this._scrollHeight = this._getScrollHeight();
+      this._scrollheight = this._getScrollheight();
       const targets = SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target);
       targets.map(element => {
         const targetSelector = getSelectorFromElement(element);
@@ -6210,22 +6210,22 @@
       return this._scrollElement === window ? this._scrollElement.pageYOffset : this._scrollElement.scrollTop;
     }
 
-    _getScrollHeight() {
-      return this._scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    _getScrollheight() {
+      return this._scrollElement.scrollheight || Math.max(document.body.scrollheight, document.documentElement.scrollheight);
     }
 
-    _getOffsetHeight() {
-      return this._scrollElement === window ? window.innerHeight : this._scrollElement.getBoundingClientRect().height;
+    _getOffsetheight() {
+      return this._scrollElement === window ? window.innerheight : this._scrollElement.getBoundingClientRect().height;
     }
 
     _process() {
       const scrollTop = this._getScrollTop() + this._config.offset;
 
-      const scrollHeight = this._getScrollHeight();
+      const scrollheight = this._getScrollheight();
 
-      const maxScroll = this._config.offset + scrollHeight - this._getOffsetHeight();
+      const maxScroll = this._config.offset + scrollheight - this._getOffsetheight();
 
-      if (this._scrollHeight !== scrollHeight) {
+      if (this._scrollheight !== scrollheight) {
         this.refresh();
       }
 

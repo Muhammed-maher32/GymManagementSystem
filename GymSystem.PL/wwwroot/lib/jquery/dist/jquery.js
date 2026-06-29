@@ -6542,7 +6542,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				tr.style.cssText = "border:1px solid";
 
 				// Support: Chrome 86+
-				// Height set through cssText does not get applied.
+				// height set through cssText does not get applied.
 				// Computed height then comes back as 0.
 				tr.style.height = "1px";
 				trChild.style.height = "9px";
@@ -6563,7 +6563,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				trStyle = window.getComputedStyle( tr );
 				reliableTrDimensionsVal = ( parseInt( trStyle.height, 10 ) +
 					parseInt( trStyle.borderTopWidth, 10 ) +
-					parseInt( trStyle.borderBottomWidth, 10 ) ) === tr.offsetHeight;
+					parseInt( trStyle.borderBottomWidth, 10 ) ) === tr.offsetheight;
 
 				documentElement.removeChild( table );
 			}
@@ -6689,7 +6689,7 @@ var
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
 	cssNormalTransform = {
 		letterSpacing: "0",
-		fontWeight: "400"
+		fontweight: "400"
 	};
 
 function setPositiveNumber( _elem, value, subtract ) {
@@ -6755,7 +6755,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 	// Account for positive content-box scroll gutter when requested by providing computedVal
 	if ( !isBorderBox && computedVal >= 0 ) {
 
-		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
+		// offsetWidth/offsetheight is a rounded sum of content, padding, scroll gutter, and border
 		// Assuming integer scroll gutter, subtract the rest and round down
 		delta += Math.max( 0, Math.ceil(
 			elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
@@ -6764,7 +6764,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 			extra -
 			0.5
 
-		// If offsetWidth/offsetHeight is unknown, then we can't determine content-box scroll gutter
+		// If offsetWidth/offsetheight is unknown, then we can't determine content-box scroll gutter
 		// Use an explicit zero to avoid NaN (gh-3964)
 		) ) || 0;
 	}
@@ -6772,7 +6772,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 	return delta;
 }
 
-function getWidthOrHeight( elem, dimension, extra ) {
+function getWidthOrheight( elem, dimension, extra ) {
 
 	// Start with computed style
 	var styles = getStyles( elem ),
@@ -6798,7 +6798,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 
 
 	// Support: IE 9 - 11 only
-	// Use offsetWidth/offsetHeight for when box sizing is unreliable.
+	// Use offsetWidth/offsetheight for when box sizing is unreliable.
 	// In those cases, the computed value can be trusted to be border-box.
 	if ( ( !support.boxSizingReliable() && isBorderBox ||
 
@@ -6808,12 +6808,12 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		// Interestingly, in some cases IE 9 doesn't suffer from this issue.
 		!support.reliableTrDimensions() && nodeName( elem, "tr" ) ||
 
-		// Fall back to offsetWidth/offsetHeight when value is "auto"
+		// Fall back to offsetWidth/offsetheight when value is "auto"
 		// This happens for inline elements with no explicit setting (gh-3571)
 		val === "auto" ||
 
 		// Support: Android <=4.1 - 4.3 only
-		// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+		// Also use offsetWidth/offsetheight for misreported inline dimensions (gh-3602)
 		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) &&
 
 		// Make sure the element is visible & connected
@@ -6821,7 +6821,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 
-		// Where available, offsetWidth/offsetHeight approximate border box dimensions.
+		// Where available, offsetWidth/offsetheight approximate border box dimensions.
 		// Where not available (e.g., SVG), assume unreliable box-sizing and interpret the
 		// retrieved value as a content box dimension.
 		valueIsBorderBox = offsetProp in elem;
@@ -6872,7 +6872,7 @@ jQuery.extend( {
 		"fillOpacity": true,
 		"flexGrow": true,
 		"flexShrink": true,
-		"fontWeight": true,
+		"fontweight": true,
 		"gridArea": true,
 		"gridColumn": true,
 		"gridColumnEnd": true,
@@ -6880,7 +6880,7 @@ jQuery.extend( {
 		"gridRow": true,
 		"gridRowEnd": true,
 		"gridRowStart": true,
-		"lineHeight": true,
+		"lineheight": true,
 		"opacity": true,
 		"order": true,
 		"orphans": true,
@@ -7028,9 +7028,9 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 					swap( elem, cssShow, function() {
-						return getWidthOrHeight( elem, dimension, extra );
+						return getWidthOrheight( elem, dimension, extra );
 					} ) :
-					getWidthOrHeight( elem, dimension, extra );
+					getWidthOrheight( elem, dimension, extra );
 			}
 		},
 
@@ -9958,7 +9958,7 @@ jQuery.expr.pseudos.hidden = function( elem ) {
 	return !jQuery.expr.pseudos.visible( elem );
 };
 jQuery.expr.pseudos.visible = function( elem ) {
-	return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+	return !!( elem.offsetWidth || elem.offsetheight || elem.getClientRects().length );
 };
 
 
@@ -10642,15 +10642,15 @@ jQuery.each( [ "top", "left" ], function( _i, prop ) {
 } );
 
 
-// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
-jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
+// Create innerheight, innerWidth, height, width, outerheight and outerWidth methods
+jQuery.each( { height: "height", Width: "width" }, function( name, type ) {
 	jQuery.each( {
 		padding: "inner" + name,
 		content: type,
 		"": "outer" + name
 	}, function( defaultExtra, funcName ) {
 
-		// Margin is only for outerHeight, outerWidth
+		// Margin is only for outerheight, outerWidth
 		jQuery.fn[ funcName ] = function( margin, value ) {
 			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
 				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
@@ -10660,7 +10660,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 
 				if ( isWindow( elem ) ) {
 
-					// $( window ).outerWidth/Height return w/h including scrollbars (gh-1729)
+					// $( window ).outerWidth/height return w/h including scrollbars (gh-1729)
 					return funcName.indexOf( "outer" ) === 0 ?
 						elem[ "inner" + name ] :
 						elem.document.documentElement[ "client" + name ];
@@ -10670,7 +10670,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				if ( elem.nodeType === 9 ) {
 					doc = elem.documentElement;
 
-					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height],
+					// Either scroll[Width/height] or offset[Width/height] or client[Width/height],
 					// whichever is greatest
 					return Math.max(
 						elem.body[ "scroll" + name ], doc[ "scroll" + name ],

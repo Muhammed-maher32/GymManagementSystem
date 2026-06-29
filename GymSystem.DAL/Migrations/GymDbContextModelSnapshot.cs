@@ -157,7 +157,7 @@ namespace GymSystem.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GetDate()");
 
-                    b.Property<int>("Hieght")
+                    b.Property<int>("Height")
                         .HasColumnType("int");
 
                     b.Property<int>("MemberId")
@@ -169,7 +169,7 @@ namespace GymSystem.DAL.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("Wieght")
+                    b.Property<float>("Weight")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
@@ -194,7 +194,7 @@ namespace GymSystem.DAL.Migrations
                         .HasColumnName("JoinDate")
                         .HasDefaultValueSql("GetDate()");
 
-                    b.Property<DateOnly>("DateofBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
@@ -365,7 +365,7 @@ namespace GymSystem.DAL.Migrations
                         .HasColumnName("HireDate")
                         .HasDefaultValueSql("GetDate()");
 
-                    b.Property<DateOnly>("DateofBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
