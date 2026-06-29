@@ -413,10 +413,6 @@ Checklist of every module in the spec vs. what exists in the code today.
 - [ ] Wire up `AddIdentity` + `UseAuthentication` in `Program.cs` (currently only `UseAuthorization` is present)
 - [ ] Protect controllers/actions with `[Authorize]` + role checks
 
-### 🛠️ Tech-debt / cleanups
-- [ ] Reshape `Booking` & `Membership` navigations (see modules 4 & 5) — intentionally deferred until those modules are built
-- [ ] Add validation summaries/partials to remaining views as they're created
-
 > ℹ️ **Why the `Booking`/`Membership` placeholders exist:** both models currently expose `IEnumerable<>` navigation collections (e.g. `Booking.Sessions`) *alongside* a single FK (`Booking.SessionId`). EF uses the scalar FK, so the schema is correct today; the collections are kept intentionally as placeholders for the upcoming Booking & Membership modules.
 
 ---
