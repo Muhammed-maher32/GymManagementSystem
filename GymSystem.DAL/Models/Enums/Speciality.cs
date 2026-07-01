@@ -4,6 +4,6 @@ public enum Speciality
 {
     Fitness = 1,
     Yoga,
-    Crossfit,.
+    Crossfit,
     GeneralFitness
 }

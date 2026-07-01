@@ -98,6 +98,11 @@ namespace GymSystem.BLL.Services
             if (emailExists) return Result.Fail("Creation Failed.Email already in use.");
             if (phoneExists) return Result.Fail("Creation Failed.Phone already in use.");
 
+            //UploadPhoto
+
+
+
+
             var member = _mapper.Map<Member>(model);
 
             _memberRepo.Add(member);
