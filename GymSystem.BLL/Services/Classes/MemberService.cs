@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymSystem.BLL.Services.Attachment;
 using GymSystem.BLL.Services.Common;
 using GymSystem.BLL.Services.Contracts;
 using GymSystem.BLL.ViewModels.MemberViewModels;
@@ -11,11 +12,13 @@ namespace GymSystem.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IAttachmentService _attachmentservice;
 
-        public MemberService(IUnitOfWork unitOfWork, IMapper mapper)
+        public MemberService(IUnitOfWork unitOfWork, IMapper mapper, IAttachmentService attachmentservice)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _attachmentservice = attachmentservice;
         }
 
 
@@ -99,17 +102,35 @@ namespace GymSystem.BLL.Services
             if (phoneExists) return Result.Fail("Creation Failed.Phone already in use.");
 
             //UploadPhoto
+            var uploadResult = await _attachmentservice.UploadAsync(
+                model.PhotoFile.OpenReadStream(),
+                model.PhotoFile.FileName,
+                "MembersPhoto", ct);
 
-
-
+            if (!uploadResult.Success)
+            {
+                return Result.Fail(uploadResult.Error ?? "Photo upload failed");
+            }
+            var storedPhotoName = uploadResult.Value;
 
             var member = _mapper.Map<Member>(model);
 
+            member.Photo = storedPhotoName;
+
             _memberRepo.Add(member);
+
             var result = await _unitOfWork.SaveChangesAsync(ct);
 
-            return result > 0 ? Result.Ok() : Result.Fail("Try again.");
+            if (result > 0)
+            {
+                return Result.Ok();
+            }
+            else
+            {
+                //delete uploaded photo
 
+                return Result.Fail("Try again.");
+            }
         }
 
         public async Task<Result> RemoveMemberAsync(int id, CancellationToken ct)

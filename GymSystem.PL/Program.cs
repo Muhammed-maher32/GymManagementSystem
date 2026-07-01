@@ -1,5 +1,6 @@
 using GymSystem.BLL;
 using GymSystem.BLL.Services;
+using GymSystem.BLL.Services.Attachment;
 using GymSystem.BLL.Services.Contracts;
 using GymSystem.DAL.Data.AppDbContexts;
 using GymSystem.DAL.Repositories.Classes;
@@ -18,13 +19,13 @@ namespace GymSystemG04
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            //builder.Services.AddScoped<IPlanRepository, PlanRepository>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IPlanService, PlanService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<ISessionRepository, SessionRepository>();
             builder.Services.AddScoped<ISessionService, SessionService>();
+            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
             builder.Services.AddAutoMapper(m => m.AddProfile(new MappingProfile()));
 
             builder.Services.AddDbContext<GymDbContext>(options =>
