@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GymSystem.BLL.Services.Common
+﻿namespace GymSystem.BLL.Services.Common
 {
     public sealed record Result(bool Success, string? Error = null, ResultKind Kind = ResultKind.Ok)
     {

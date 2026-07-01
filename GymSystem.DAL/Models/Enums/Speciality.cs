@@ -1,10 +1,9 @@
-﻿namespace GymSystem.DAL.Models.Enums
+﻿namespace GymSystem.DAL.Models.Enums;
+
+public enum Speciality
 {
-    public enum Speciality
-    {
-        Fitness = 1,
-        Yoga,
-        Crossfit,
-        GeneralFitness
-    }
+    Fitness = 1,
+    Yoga,
+    Crossfit,.
+    GeneralFitness
 }

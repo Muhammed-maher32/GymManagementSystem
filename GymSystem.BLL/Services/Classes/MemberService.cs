@@ -4,11 +4,6 @@ using GymSystem.BLL.Services.Contracts;
 using GymSystem.BLL.ViewModels.MemberViewModels;
 using GymSystem.DAL.Models;
 using GymSystem.DAL.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymSystem.BLL.Services
 {
